@@ -914,7 +914,7 @@ CREATE TABLE "public"."sys_role" (
   "menu_check_strictly" bool,
   "dept_check_strictly" bool,
   "status" char(1) COLLATE "pg_catalog"."default" NOT NULL,
-  "del_flag" char(1) COLLATE "pg_catalog"."default",
+  "del_flag" char(1) COLLATE "pg_catalog"."default" DEFAULT 0,
   "create_by" varchar(64) COLLATE "pg_catalog"."default",
   "create_time" timestamp(6),
   "update_by" varchar(64) COLLATE "pg_catalog"."default",
@@ -1080,7 +1080,7 @@ CREATE TABLE "public"."sys_user" (
   "avatar" varchar(100) COLLATE "pg_catalog"."default",
   "password" varchar(100) COLLATE "pg_catalog"."default",
   "status" char(1) COLLATE "pg_catalog"."default",
-  "del_flag" char(1) COLLATE "pg_catalog"."default",
+  "del_flag" char(1) default '0',
   "login_ip" varchar(128) COLLATE "pg_catalog"."default",
   "login_date" timestamp(6),
   "create_by" varchar(64) COLLATE "pg_catalog"."default",
@@ -1366,4 +1366,16 @@ BEGIN
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
-  COST 100
+  COST 100;
+
+
+alter sequence sys_user_user_id_seq  restart  3;
+alter sequence sys_config_config_id_seq  restart  4;
+alter sequence sys_dept_dept_id_seq  restart  110;
+alter sequence sys_dict_data_dict_code_seq  restart  29;
+alter sequence sys_dict_type_dict_id_seq  restart  11;
+alter sequence sys_job_job_id_seq  restart  4;
+alter sequence sys_menu_menu_id_seq  restart  2000;
+alter sequence sys_notice_notice_id_seq  restart  3;
+alter sequence sys_post_post_id_seq  restart  4;
+alter sequence sys_role_role_id_seq  restart  3;
